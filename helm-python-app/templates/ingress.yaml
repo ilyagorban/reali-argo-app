@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ $fullName }}
+  labels:
+    app: {{ template "helm-python-app.name" . }}
+    chart: {{ template "helm-python-app.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  rules:
+    {{- range .Values.ingress.hosts }}
+    - host: {{ .host | quote }}
+      http:
+        paths:
+          {{- range .paths }}
+          - path: {{ .path }}
+            backend:
+              serviceName: {{ template "helm-python-app.fullname" . }}
+              servicePort: {{ .Values.service.port }}
+          {{- end }}
+    {{- end }}
+
