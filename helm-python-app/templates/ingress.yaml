@@ -1,3 +1,4 @@
+{{- $fullName := include "helm-python-app.fullname" . -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -10,14 +11,11 @@ metadata:
 spec:
   rules:
     {{- range .Values.ingress.hosts }}
-    - host: {{ .host | quote }}
+    - host: {{ . | quote }}
       http:
         paths:
-          {{- range .paths }}
-          - path: {{ .path }}
+          - path: {{ $.Values.ingress.path }}
             backend:
-              serviceName: {{ template "helm-python-app.fullname" . }}
-              servicePort: {{ .Values.service.port }}
-          {{- end }}
+              serviceName: {{ $fullName }}
+              servicePort: {{ $.Values.service.port }}
     {{- end }}
-

@@ -4,6 +4,10 @@ service:
   port: 80
 image:
   pullPolicy: Always
+ingress:
+  path: /
+  hosts:
+    - chart-example.local
 tolerations:
 - key: "dedicated"
   operator: "Equal"
