@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "helm-sample-dockerfile.fullname" . }}
+  labels:
+    app: {{ template "helm-sample-dockerfile.name" . }}
+    chart: {{ template "helm-sample-dockerfile.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ template "helm-sample-dockerfile.name" . }}
+    release: {{ .Release.Name }}
