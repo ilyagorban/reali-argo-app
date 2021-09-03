@@ -1,4 +1,4 @@
-# Default values for helm-sample-dockerfile.
+# Default values for helm-python-app.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 

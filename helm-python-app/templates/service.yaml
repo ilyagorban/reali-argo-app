@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "helm-sample-dockerfile.fullname" . }}
+  name: {{ template "helm-python-app.fullname" . }}
   labels:
-    app: {{ template "helm-sample-dockerfile.name" . }}
-    chart: {{ template "helm-sample-dockerfile.chart" . }}
+    app: {{ template "helm-python-app.name" . }}
+    chart: {{ template "helm-python-app.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
@@ -15,5 +15,5 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app: {{ template "helm-sample-dockerfile.name" . }}
+    app: {{ template "helm-python-app.name" . }}
     release: {{ .Release.Name }}
