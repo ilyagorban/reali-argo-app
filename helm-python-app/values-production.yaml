@@ -1,7 +1,6 @@
 # service:
 #   type: LoadBalancer
 image:
-  tag: latest
   pullPolicy: Always
 tolerations:
 - key: "dedicated"
